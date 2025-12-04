@@ -1,4 +1,3 @@
-
 const loadCategories = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/categories"
@@ -17,7 +16,6 @@ const loadCategories = async () => {
       <strong>${cat.category_name}</strong>
     `;
 
-    // Click → Filter plants
     li.addEventListener("click", () => {
       document
         .querySelectorAll(".category")
@@ -34,9 +32,8 @@ const loadCategories = async () => {
 
 loadCategories();
 
-// -------------------------------
-// Load All Plants Initially
-// -------------------------------
+// Load All Plants show
+
 let allPlants = [];
 
 const loadPlants = async () => {
@@ -49,9 +46,8 @@ const loadPlants = async () => {
 
 loadPlants();
 
-// -------------------------------
 // Display Plants
-// -------------------------------
+
 const displayPlants = (plants) => {
   const container = document.getElementById("products-container");
   container.innerHTML = "";
@@ -92,9 +88,8 @@ const displayPlants = (plants) => {
   });
 };
 
-// -------------------------------
-// Filter Plants by Category
-// -------------------------------
+// Filtering  Category
+
 function loadTreesByCategory(categoryName) {
   const filtered = allPlants.filter((plant) => plant.category === categoryName);
   displayPlants(filtered);
