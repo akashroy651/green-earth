@@ -102,3 +102,20 @@ function loadTreesByCategory(categoryName) {
 
 // open modal
 
+function openModal(id) {
+  const plant = allPlants.find((p) => p.id === id);
+
+  document.getElementById("modalImage").src = plant.image;
+  document.getElementById("modalName").innerText = plant.name;
+  document.getElementById("modalDescription").innerText = plant.description;
+  document.getElementById("modalCategory").innerText = plant.category;
+  document.getElementById("modalPrice").innerText = plant.price;
+
+  document.getElementById("plantModal").classList.remove("hidden");
+  document.getElementById("plantModal").classList.add("flex");
+}
+
+function closeModal() {
+  document.getElementById("plantModal").classList.add("hidden");
+  document.getElementById("plantModal").classList.remove("flex");
+}
