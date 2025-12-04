@@ -1,13 +1,4 @@
-// document.querySelectorAll(".category").forEach(cat => {
-//         cat.addEventListener("click", () => {
-//           document.querySelectorAll(".category").forEach(c => c.classList.remove("bg-green-600","text-white"));
-//           cat.classList.add("bg-green-600","text-white");
-//         });
-//       });
 
-// -------------------------------
-// Load Categories
-// -------------------------------
 const loadCategories = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/categories"
@@ -111,62 +102,3 @@ function loadTreesByCategory(categoryName) {
 
 // open modal
 
-function openModal(id) {
-  const plant = allPlants.find((p) => p.id === id);
-
-  document.getElementById("modalImage").src = plant.image;
-  document.getElementById("modalName").innerText = plant.name;
-  document.getElementById("modalDescription").innerText = plant.description;
-  document.getElementById("modalCategory").innerText = plant.category;
-  document.getElementById("modalPrice").innerText = plant.price;
-
-  document.getElementById("plantModal").classList.remove("hidden");
-  document.getElementById("plantModal").classList.add("flex");
-}
-
-function closeModal() {
-  document.getElementById("plantModal").classList.add("hidden");
-  document.getElementById("plantModal").classList.remove("flex");
-}
-
-// Cart functionality
-// let cart = {};
-
-// function addToCart(name, price) {
-//   if (cart[name]) {
-//     cart[name].qty++;
-//   } else {
-//     cart[name] = { price: price, qty: 1 };
-//   }
-//   renderCart();
-// }
-
-// function removeFromCart(name) {
-//   if (cart[name]) {
-//     cart[name].qty--;
-//     if (cart[name].qty <= 0) {
-//       delete cart[name];
-//     }
-//   }
-//   renderCart();
-// }
-
-// function renderCart() {
-//   const cartItems = document.getElementById("cartItems");
-//   const totalPriceEl = document.getElementById("totalPrice");
-//   cartItems.innerHTML = "";
-//   let total = 0;
-
-//   for (let item in cart) {
-//     let div = document.createElement("div");
-//     div.className = "flex justify-between items-center bg-green-50 mb-8 p-2 rounded";
-//     div.innerHTML = `
-//       <span>${item}  <br/> ৳ ${cart[item].price} × ${cart[item].qty}</span>
-//       <button onclick="removeFromCart('${item}')" class=" font-bold">×</button>
-//     `;
-//     cartItems.appendChild(div);
-//     total += cart[item].price * cart[item].qty;
-//   }
-
-//   totalPriceEl.textContent = "৳" + total;
-// }
