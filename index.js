@@ -1,3 +1,5 @@
+
+
 const loadCategories = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/categories"
@@ -7,22 +9,43 @@ const loadCategories = async () => {
   const categoriesList = document.getElementById("categories");
   categoriesList.innerHTML = "";
 
+ 
+  const liAll = document.createElement("li");
+  liAll.className =
+    "category px-3 py-2 rounded hover:bg-green-200 cursor-pointer font-semibold";
+  liAll.textContent = "All Trees";
+
+  liAll.addEventListener("click", () => {
+    
+    document
+      .querySelectorAll(".category")
+      .forEach((item) => item.classList.remove("bg-green-600", "text-white"));
+
+    liAll.classList.add("bg-green-600", "text-white");
+
+    // Show all plants
+    displayPlants(allPlants);
+  });
+
+  categoriesList.appendChild(liAll);
+
+  // 2️⃣ Load API categories
   data.categories.forEach((cat) => {
     const li = document.createElement("li");
     li.className =
       "category px-3 py-2 rounded hover:bg-green-200 cursor-pointer";
 
-    li.innerHTML = `
-      <strong>${cat.category_name}</strong>
-    `;
+    li.innerHTML = `<strong>${cat.category_name}</strong>`;
 
     li.addEventListener("click", () => {
+    
       document
         .querySelectorAll(".category")
         .forEach((item) => item.classList.remove("bg-green-600", "text-white"));
 
       li.classList.add("bg-green-600", "text-white");
 
+    
       loadTreesByCategory(cat.category_name);
     });
 
@@ -30,7 +53,7 @@ const loadCategories = async () => {
   });
 };
 
-loadCategories();
+
 
 // Load All Plants show
 
@@ -40,7 +63,7 @@ const loadPlants = async () => {
   const res = await fetch("https://openapi.programming-hero.com/api/plants");
   const data = await res.json();
 
-  allPlants = data.plants; // store all plants for later filtering
+  allPlants = data.plants; 
   displayPlants(allPlants);
 };
 
@@ -114,3 +137,9 @@ function closeModal() {
   document.getElementById("plantModal").classList.add("hidden");
   document.getElementById("plantModal").classList.remove("flex");
 }
+
+// 
+document.addEventListener("DOMContentLoaded", () => {
+  loadCategories();
+  loadPlants();
+})
